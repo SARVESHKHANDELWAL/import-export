@@ -29,7 +29,7 @@ import com.bezkoder.springjwt.repository.UserRepository;
 import com.bezkoder.springjwt.security.jwt.JwtUtils;
 import com.bezkoder.springjwt.security.services.UserDetailsImpl;
 
-@CrossOrigin(origins = "http")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/login/auth")
 public class AuthController {

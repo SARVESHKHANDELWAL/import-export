@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -68,25 +68,22 @@ public class AuthController {
 												 userDetails.getEmail(), 
 												 roles));
 	}
-
+	
 	@PostMapping("/checkavailble")
 	public ResponseEntity<?> checkUserEmailMobileExists(@RequestBody AvailabilityRequest signUpRequest){
 		System.out.println("calls  coming here"+signUpRequest.getMobile());
 		if (userRepository.existsByCompanyName(signUpRequest.getCompanyName())) {
-			return ResponseEntity
-					.badRequest()
+			return ResponseEntity.badRequest()
 					.body(new MessageResponse("Error: Username is already taken!"));
 		}
 
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-			return ResponseEntity
-					.badRequest()
+			return ResponseEntity.badRequest()
 					.body(new MessageResponse("Error: Email is already in use!"));
 		}
 
 		if (userRepository.existsByMobile(signUpRequest.getMobile())) {
-			return ResponseEntity
-					.badRequest()
+			return ResponseEntity.badRequest()
 					.body(new MessageResponse("Error: Mobile is already in use!"));
 		}
 

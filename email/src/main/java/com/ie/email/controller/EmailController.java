@@ -14,7 +14,7 @@ import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
 
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "/email")
 public class EmailController {
